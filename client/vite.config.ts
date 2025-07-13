@@ -7,13 +7,13 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["lucide-react"],
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://ecom-beak.onrender.com",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   // proxy: {
+  //   //   "/api": {
+  //   //     target: "https://ecom-beak.onrender.com",
+  //   //     changeOrigin: true,
+  //   //     secure: false,
+  //   //   },
+  //   // },
+  // },
 });
