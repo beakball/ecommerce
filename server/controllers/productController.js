@@ -3,8 +3,8 @@ import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: "dplsiqv75",
-  api_key: "332776913479731",
-  api_secret: "Z5B8H21tmyAlHOQYglWT4X6e_vk",
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const extractPublicId = (url) => {
