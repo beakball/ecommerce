@@ -141,7 +141,7 @@ const CreateProduct = () => {
       }
 
       const { data } = await axios.post(
-        baseURL + "/api/v1/products/seller/create-product",
+        `${baseURL}/api/v1/products/seller/create-product`,
         {
           ...formData,
           images: uploadedImageUrls,

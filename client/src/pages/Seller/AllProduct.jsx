@@ -31,13 +31,14 @@ const AllProduct = () => {
 
   useEffect(() => {
     fetchProducts();
+    console.log(baseURL);
   }, []);
 
   const fetchProducts = async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        baseURL + "/api/v1/products/seller/my-products",
+        `${baseURL}/api/v1/products/seller/my-products`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -54,7 +55,7 @@ const AllProduct = () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         await axios.delete(
-          baseURL + `/api/v1/products/seller/delete-product/${id}`,
+          `${baseURL}/api/v1/products/seller/delete-product/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -198,8 +199,7 @@ const AllProduct = () => {
       } = editFormData;
 
       await axios.put(
-        baseURL +
-          `/api/v1/products/seller/update-product/${editingProduct._id}`,
+        `${baseURL}/api/v1/products/seller/update-product/${editingProduct._id}`,
         {
           name,
           description,
