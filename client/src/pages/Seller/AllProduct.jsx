@@ -23,6 +23,8 @@ const AllProduct = () => {
   const [editImages, setEditImages] = useState([]);
   const [updateLoading, setUpdateLoading] = useState(false);
 
+  const baseURL = import.meta.env.VITE_BACKEND_URL;
+
   // Temporary token - in a real app, get this from auth context
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmZmZTVjMzk3MmQ1YjVkYjc4YjM5OSIsImlhdCI6MTc1MjIyNjY5MCwiZXhwIjoxNzUyODMxNDkwfQ.eGcWRsZe-zbptLu3tU1TmG6AEP7jLnQxhVdlMCzAjqk";
@@ -34,9 +36,12 @@ const AllProduct = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("/api/v1/products/seller/my-products", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data } = await axios.get(
+        baseURL + "/api/v1/products/seller/my-products",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setProducts(data.products);
       setLoading(false);
     } catch (error) {
@@ -48,9 +53,12 @@ const AllProduct = () => {
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`/api/v1/products/seller/delete-product/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await axios.delete(
+          baseURL + `/api/v1/products/seller/delete-product/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         fetchProducts();
       } catch (error) {
         console.error("Error deleting product:", error);
@@ -190,7 +198,8 @@ const AllProduct = () => {
       } = editFormData;
 
       await axios.put(
-        `/api/v1/products/seller/update-product/${editingProduct._id}`,
+        baseURL +
+          `/api/v1/products/seller/update-product/${editingProduct._id}`,
         {
           name,
           description,

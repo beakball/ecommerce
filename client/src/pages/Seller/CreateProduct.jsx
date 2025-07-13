@@ -18,6 +18,8 @@ const CreateProduct = () => {
   });
   const [loading, setLoading] = useState(false);
 
+  const baseURL = import.meta.env.VITE_BACKEND_URL;
+
   const handleAddProduct = () => {
     setIsFormOpen(true);
   };
@@ -139,7 +141,7 @@ const CreateProduct = () => {
       }
 
       const { data } = await axios.post(
-        "/api/v1/products/seller/create-product",
+        baseURL + "/api/v1/products/seller/create-product",
         {
           ...formData,
           images: uploadedImageUrls,
